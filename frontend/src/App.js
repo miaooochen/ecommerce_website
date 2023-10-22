@@ -9,7 +9,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
 function App() {
-  const user = useSelector((state) => state.user.currentUser);
+  const { registerSuccess, currentUser } = useSelector((state) => state.user);
   return (
     <Router>
       <Routes>
@@ -18,8 +18,8 @@ function App() {
         <Route path='product/:id' element={<ProductItem/>}/>
         <Route path='cart' element={<Cart/>}/>
         <Route path='success' element={<Success/>} />
-        <Route path='login' element={<Login/>}/>
-        <Route path='register' element={<Register/>}/>
+        <Route path='login' element={ <Login/>}/>
+        <Route path='register' element={ <Register/>}/>
       </Routes>
     </Router>
    

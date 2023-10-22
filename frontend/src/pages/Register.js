@@ -66,11 +66,11 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { currentUser, isFetching, error } = useSelector((state) => state.user)
+  const { registerSuccess, isFetching, error } = useSelector((state) => state.user)
   const handleRegister = (e) => {
     e.preventDefault();
     register(dispatch, {username, email, password} );
-    currentUser !== null && navigate('/login');
+    registerSuccess && navigate('/login');
   };
   return (
     <Container>
@@ -79,7 +79,7 @@ const Register = () => {
         <Form>
           <Input placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
           <Input placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
-          <Input placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
+          <Input placeholder="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>

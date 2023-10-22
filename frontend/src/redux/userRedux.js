@@ -7,6 +7,7 @@ const userSlice = createSlice({
     currentUser: null,
     isFetching: false,
     error: false,
+    registerSuccess: false,
   },
   reducers: {
     loginStart: (state) => {
@@ -28,9 +29,9 @@ const userSlice = createSlice({
     registerStart: (state) => {
       state.isFetching = true;
     },
-    registerSuccess: (state, action) => {
+    registerSuccess: (state) => {
       state.isFetching = false;
-      state.currentUser = action.payload;
+      state.registerSuccess = true;
     },
     registerFailure: (state) => {
       state.isFetching = false;
@@ -53,7 +54,7 @@ export const register = async (dispatch, user) => {
   dispatch(registerStart());
   try {
     const res = await axios.post("http://localhost:3500/auth/register", user);
-    dispatch(registerSuccess(res.data));
+    dispatch(registerSuccess());
   } catch (err) {
     dispatch(registerFailure());
   }
